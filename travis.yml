@@ -4,3 +4,19 @@ services:
 
 before_install:
   - docker build -t jhearington/react-test -f ./client/Dockerfile../client/Dockerfile.dev ./client
+
+script: 
+  - docker run jhearington/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t jhearington/multi-client ./client
+  - docker build -t jhearington/multi-nginx ./multi-nginx
+  - docker built -t jhearington/multi-server ./server
+  - docker built -t jhearington/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push jhearington/multi-client
+  - docker push jhearington/multi-nginx
+  - docker push jhearington/multi-server
+  - docker push jhearington/multi-worker
