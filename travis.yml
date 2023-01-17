@@ -1,12 +1,14 @@
+language: generic
+
 sudo: required
-services: 
+services:
   - docker
 
 before_install:
   - docker build -t jhearington/react-test -f ./client/Dockerfile../client/Dockerfile.dev ./client
 
-script: 
-  - docker run jhearington/react-test npm test -- --coverage
+script:
+  - docker run -e CI=true jhearington/react-test npm test
 
 after_success:
   - docker build -t jhearington/multi-client ./client
