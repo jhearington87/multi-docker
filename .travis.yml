@@ -11,14 +11,14 @@ script:
   - docker run -e CI=true jhearington/react-test npm test
 
 after_success:
-  - docker build -t jhearington/multi-client ./client
-  - docker build -t jhearington/multi-nginx ./multi-nginx
-  - docker built -t jhearington/multi-server ./server
-  - docker built -t jhearington/multi-worker ./worker
+  - docker build -t jhearington87/multi-client ./client
+  - docker build -t jhearington87/multi-nginx ./multi-nginx
+  - docker built -t jhearington87/multi-server ./server
+  - docker built -t jhearington87/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push jhearington/multi-client
-  - docker push jhearington/multi-nginx
-  - docker push jhearington/multi-server
-  - docker push jhearington/multi-worker
+  - docker push jhearington87/multi-client
+  - docker push jhearington87/multi-nginx
+  - docker push jhearington87/multi-server
+  - docker push jhearington87/multi-worker
