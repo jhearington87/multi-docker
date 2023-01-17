@@ -13,8 +13,8 @@ script:
 after_success:
   - docker build -t brownie/multi-client ./client
   - docker build -t brownie/multi-nginx ./multi-nginx
-  - docker built -t brownie/multi-server ./server
-  - docker built -t brownie/multi-worker ./worker
+  - docker build -t brownie/multi-server ./server
+  - docker build -t brownie/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
