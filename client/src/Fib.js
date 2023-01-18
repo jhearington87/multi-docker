@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import axios from 'axios';
+import React, { Component } from 'react';
 
 class Fib extends Component {
   state = {
@@ -20,9 +20,9 @@ class Fib extends Component {
 
   async fetchIndexes() {
     const seenIndexes = await axios.get('/api/values/all');
-    this.setState({
+    this.setState([{
       seenIndexes: seenIndexes.data,
-    });
+    }]);
   }
 
   handleSubmit = async (event) => {
